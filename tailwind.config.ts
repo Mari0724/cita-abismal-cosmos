@@ -61,7 +61,22 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				mystic: {
+					purple: 'hsl(var(--mystic-purple))',
+					indigo: 'hsl(var(--mystic-indigo))',
+					gold: 'hsl(var(--mystic-gold))',
+					dark: 'hsl(var(--mystic-dark))',
+					card: 'hsl(var(--mystic-card))'
 				}
+			},
+			backgroundImage: {
+				'gradient-mystic': 'var(--gradient-mystic)',
+				'gradient-cosmic': 'var(--gradient-cosmic)'
+			},
+			fontFamily: {
+				serif: ['Playfair Display', 'serif'],
+				sans: ['Inter', 'sans-serif']
 			},
 			borderRadius: {
 				lg: 'var(--radius)',

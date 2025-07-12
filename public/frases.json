@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "texto": "En el fondo del abismo también se encuentran las estrellas.",
+    "autor": "Friedrich Nietzsche",
+    "tema": "filosofía"
+  },
+  {
+    "id": 2,
+    "texto": "La palabra es la sombra del acto.",
+    "autor": "Democritus",
+    "tema": "filosofía"
+  },
+  {
+    "id": 3,
+    "texto": "No somos seres humanos teniendo una experiencia espiritual. Somos seres espirituales teniendo una experiencia humana.",
+    "autor": "Pierre Teilhard de Chardin",
+    "tema": "espiritualidad"
+  },
+  {
+    "id": 4,
+    "texto": "La imaginación es más importante que el conocimiento.",
+    "autor": "Albert Einstein",
+    "tema": "ciencia"
+  },
+  {
+    "id": 5,
+    "texto": "El que mira hacia afuera, sueña. El que mira hacia adentro, despierta.",
+    "autor": "Carl Jung",
+    "tema": "psicología"
+  },
+  {
+    "id": 6,
+    "texto": "No llores porque ya se terminó, sonríe porque sucedió.",
+    "autor": "Dr. Seuss",
+    "tema": "literatura"
+  },
+  {
+    "id": 7,
+    "texto": "La oscuridad no puede expulsar a la oscuridad; solo la luz puede hacerlo.",
+    "autor": "Martin Luther King Jr.",
+    "tema": "inspiración"
+  },
+  {
+    "id": 8,
+    "texto": "Somos lo que hacemos repetidamente. La excelencia, entonces, no es un acto sino un hábito.",
+    "autor": "Aristóteles",
+    "tema": "filosofía"
+  },
+  {
+    "id": 9,
+    "texto": "El misterio de la vida no es un problema a resolver, sino una realidad a experimentar.",
+    "autor": "Frank Herbert",
+    "tema": "literatura"
+  },
+  {
+    "id": 10,
+    "texto": "Ayer fui inteligente, así que quise cambiar el mundo. Hoy soy sabio, así que me estoy cambiando a mí mismo.",
+    "autor": "Rumi",
+    "tema": "espiritualidad"
+  },
+  {
+    "id": 11,
+    "texto": "La verdad no teme a la luz.",
+    "autor": "William Shakespeare",
+    "tema": "literatura"
+  },
+  {
+    "id": 12,
+    "texto": "Todo lo que somos es resultado de lo que hemos pensado.",
+    "autor": "Buddha",
+    "tema": "espiritualidad"
+  },
+  {
+    "id": 13,
+    "texto": "El conocimiento habla, pero la sabiduría escucha.",
+    "autor": "Jimi Hendrix",
+    "tema": "inspiración"
+  },
+  {
+    "id": 14,
+    "texto": "Lo que no nos mata, nos hace más fuertes.",
+    "autor": "Friedrich Nietzsche",
+    "tema": "filosofía"
+  },
+  {
+    "id": 15,
+    "texto": "El único viaje imposible es el que nunca comenzaste.",
+    "autor": "Tony Robbins",
+    "tema": "inspiración"
+  }
+]
