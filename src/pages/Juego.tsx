@@ -6,6 +6,7 @@ import { Card } from '../components/ui/card';
 import { apiService } from '../services/api';
 import type { Frase } from '../types';
 import { cn } from '@/lib/utils';
+import triviaCarImage from '../assets/trivia-cat.png';
 
 interface OpcionRespuesta {
   autor: string;
@@ -19,6 +20,7 @@ export default function Juego() {
   const [mostrarResultado, setMostrarResultado] = useState(false);
   const [puntuacion, setPuntuacion] = useState({ correctas: 0, total: 0 });
   const [isLoading, setIsLoading] = useState(false);
+  const [catExpression, setCatExpression] = useState<'thinking' | 'happy' | 'sad' | 'neutral'>('neutral');
 
   const autoresAlternativos = [
     'Oscar Wilde', 'Virginia Woolf', 'Mark Twain', 'Maya Angelou',
@@ -31,6 +33,7 @@ export default function Juego() {
     setIsLoading(true);
     setRespuestaSeleccionada(null);
     setMostrarResultado(false);
+    setCatExpression('thinking');
 
     try {
       const nuevaFrase = await apiService.getFraseAleatoria();
@@ -49,6 +52,7 @@ export default function Juego() {
       ].sort(() => Math.random() - 0.5);
 
       setOpciones(todasLasOpciones);
+      setCatExpression('neutral');
     } catch (error) {
       console.error('Error al cargar frase:', error);
     } finally {
@@ -69,10 +73,14 @@ export default function Juego() {
       correctas: prev.correctas + (esCorrecta ? 1 : 0),
       total: prev.total + 1
     }));
+
+    // Cambiar expresión del gato según la respuesta
+    setCatExpression(esCorrecta ? 'happy' : 'sad');
   };
 
   const reiniciarJuego = () => {
     setPuntuacion({ correctas: 0, total: 0 });
+    setCatExpression('neutral');
     cargarNuevaFrase();
   };
 
@@ -95,6 +103,13 @@ export default function Juego() {
   const porcentajeAciertos = puntuacion.total > 0 
     ? Math.round((puntuacion.correctas / puntuacion.total) * 100) 
     : 0;
+
+  const getCatMessage = () => {
+    if (catExpression === 'happy') return '¡Perfecto! 🎉';
+    if (catExpression === 'sad') return 'Mmm... no era esa 🤔';
+    if (catExpression === 'thinking') return 'Pensando...';
+    return '¿Quién dijo esta frase?';
+  };
 
   return (
     <div className="min-h-screen bg-gradient-cosmic">
@@ -150,25 +165,63 @@ export default function Juego() {
             </Card>
           </div>
         ) : frase ? (
-          <div className="max-w-2xl mx-auto space-y-6">
-            {/* Frase */}
-            <Card className="p-8 bg-gradient-cosmic border-border shadow-2xl">
-              <blockquote className="text-xl md:text-2xl font-light leading-relaxed text-center mb-6">
-                <span className="text-mystic-gold text-3xl">"</span>
-                {frase.texto}
-                <span className="text-mystic-gold text-3xl">"</span>
-              </blockquote>
+          <div className="max-w-3xl mx-auto space-y-8">
+            {/* Gato con globo de diálogo */}
+            <div className="flex flex-col items-center space-y-4">
+              {/* Globo de diálogo */}
+              <div className="relative bg-gradient-cosmic border-border border-2 rounded-3xl p-6 shadow-2xl max-w-2xl">
+                {/* Punta del globo */}
+                <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-full">
+                  <div className="w-0 h-0 border-l-[20px] border-r-[20px] border-t-[20px] border-l-transparent border-r-transparent border-t-border"></div>
+                  <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-[18px]">
+                    <div className="w-0 h-0 border-l-[18px] border-r-[18px] border-t-[18px] border-l-transparent border-r-transparent border-t-[hsl(var(--background))]"></div>
+                  </div>
+                </div>
 
-              <div className="text-center">
-                <span className={cn(
-                  "inline-block px-3 py-1 rounded-full text-sm font-medium",
-                  "bg-muted/30 border border-border",
-                  getThemeColor(frase.tema)
-                )}>
-                  {frase.tema}
-                </span>
+                {/* Contenido del globo */}
+                <blockquote className="text-lg md:text-xl font-light leading-relaxed text-center mb-4">
+                  <span className="text-mystic-gold text-2xl">"</span>
+                  {frase.texto}
+                  <span className="text-mystic-gold text-2xl">"</span>
+                </blockquote>
+
+                <div className="text-center">
+                  <span className={cn(
+                    "inline-block px-3 py-1 rounded-full text-sm font-medium",
+                    "bg-muted/30 border border-border",
+                    getThemeColor(frase.tema)
+                  )}>
+                    {frase.tema}
+                  </span>
+                </div>
               </div>
-            </Card>
+
+              {/* Gato */}
+              <div className="relative">
+                <img 
+                  src={triviaCarImage} 
+                  alt="Gato trivia" 
+                  className={cn(
+                    "w-32 h-32 object-contain transition-all duration-300",
+                    catExpression === 'happy' && "animate-bounce",
+                    catExpression === 'sad' && "grayscale",
+                    catExpression === 'thinking' && "animate-pulse"
+                  )}
+                />
+                {/* Mensaje del gato */}
+                <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2">
+                  <div className={cn(
+                    "px-3 py-1 rounded-full text-sm font-medium transition-all duration-300",
+                    "bg-muted/80 border border-border backdrop-blur-sm",
+                    catExpression === 'happy' && "bg-green-500/20 text-green-400 border-green-500/30",
+                    catExpression === 'sad' && "bg-red-500/20 text-red-400 border-red-500/30",
+                    catExpression === 'thinking' && "bg-yellow-500/20 text-yellow-400 border-yellow-500/30"
+                  )}>
+                    {getCatMessage()}
+                  </div>
+                </div>
+              </div>
+            </div>
 
             {/* Opciones */}
             <Card className="p-6 bg-gradient-cosmic border-border">
