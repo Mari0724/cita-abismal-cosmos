@@ -1,4 +1,4 @@
-[
+
   [
   {
     "id": 1,
@@ -599,8 +599,7 @@
     "texto": "El alma se cura al estar con niños.",
     "autor": "Fiódor Dostoyevski",
     "tema": "esperanza"
-  }
-],
+  },
   {
     "id": 101,
     "texto": "En el fondo del abismo también se encuentran las estrellas.",
